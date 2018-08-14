@@ -32,7 +32,7 @@ pickle-email-*.html
 config/index_property.conf
 config/resque_scheduler.conf
 pids/unicorn.pid
-
+.idea
 deploy_workers_production.sh
 
 *.retry
