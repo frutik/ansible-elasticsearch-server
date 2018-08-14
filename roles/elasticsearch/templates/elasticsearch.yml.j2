@@ -1,0 +1,18 @@
+transport.host: {{ private_addr }}
+http.host: {{ private_addr }}
+cluster.name: {{ cluster_name }}
+gateway.recover_after_nodes: 1
+gateway.recover_after_time: 5m
+gateway.expected_nodes: 1
+discovery.zen.ping.unicast.hosts: [{% for host in groups[elasticsearch_inventory_group] %}{% if hostvars[host]['cluster_name'] == cluster_name %}{% if hostvars[host]['private_addr'] %}'{{ hostvars[host]['private_addr'] }}'{% if not loop.last %}, {% endif %}{% endif %}{% endif %}{% endfor %}]
+discovery.zen.minimum_master_nodes: {{ elasticsearch_minimum_master_nodes }}
+discovery.zen.ping.timeout: 3s
+script.inline: false
+script.indexed: false
+script.file: true
+index.store.type: mmapfs
+indices.cache.filter.size: 20%
+node.data: {{ data_node|default(true)|lower }}
+node.master: {{ master_node|default(true)|lower }}
+node.name: {{ node_name }}
+path.scripts: {{ elasticsearch_scripts_path }}

@@ -1,0 +1,23 @@
+- name: add PPA
+  become: true
+  apt_repository: >
+    repo=ppa:webupd8team/java
+
+- name: accept oracle license
+  become: true
+  debconf: >
+    name=oracle-java8-installer
+    question=shared/accepted-oracle-license-v1-1
+    value=true
+    vtype=select
+
+- name: install package
+  become: true
+  apt: pkg=oracle-java8-installer
+ 
+- name: set JAVA_HOME
+  become: true
+  copy: >
+    content="export JAVA_HOME='/usr/lib/jvm/java-8-oracle'"
+    dest=/etc/profile.d/java_home.sh
+    mode=0644

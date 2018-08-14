@@ -1,0 +1,25 @@
+- name: add PPA
+  become: true
+  apt_repository: repo=ppa:nginx/stable
+  register: result
+
+- name: apt-get update
+  become: true
+  apt: update_cache=yes
+  when: result.changed
+
+- name: install package nginx-extras
+  become: true
+  apt: pkg=nginx-extras
+  notify: restart nginx
+
+- name: nginx - disable default site
+  become: true
+  file:
+    path=/etc/nginx/sites-enabled/default
+    state=absent
+  notify: restart nginx
+
+- name: install nginx init script
+  become: true
+  command: update-rc.d nginx defaults

@@ -1,0 +1,24 @@
+- name: add APT key
+  become: true
+  apt_key: keyserver=keyserver.ubuntu.com id=C7A7DA52 state=present
+
+- apt_repository: >
+    repo='deb http://apt.datadoghq.com/ stable main'
+    state=present
+  become: true
+
+- apt: >
+    name=datadog-agent
+    update_cache=yes
+    state=present
+  become: true
+
+- template: >
+    src=datadog.conf.j2
+    dest=/etc/dd-agent/datadog.conf
+  become: true
+  notify: restart datadog
+
+- name: Ensure services started
+  service: name=datadog-agent enabled=yes state=started
+  become: true

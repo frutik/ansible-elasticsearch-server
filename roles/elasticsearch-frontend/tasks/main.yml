@@ -1,0 +1,9 @@
+- name: Open access to elastic
+  become: true
+  template: >
+    src=elasticsearch-front.conf.j2
+    dest=/etc/nginx/sites-enabled/elasticsearch-front.conf
+    owner=root
+    group=root
+    mode=0644
+  notify: restart nginx

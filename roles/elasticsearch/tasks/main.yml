@@ -1,0 +1,38 @@
+- name: import GPG key
+  become: true
+  apt_key: url=http://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+
+- name: add repository
+  become: true
+  apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/{{ elasticsearch.version }}/debian stable main' state=present
+
+- name: install ES
+  become: true
+  apt: name=elasticsearch={{ elasticsearch.release }} update_cache=yes
+  notify: restart elasticsearch
+
+- name: generate settings
+  become: true
+  template: >
+    src=elasticsearch.j2
+    dest=/etc/default/elasticsearch
+  notify: restart elasticsearch
+
+- name: generate config
+  become: true
+  template: >
+    src=elasticsearch.yml.j2
+    dest=/etc/elasticsearch/elasticsearch.yml
+    mode=0644
+  notify: restart elasticsearch
+
+- name: Install delete-by-query
+  become: true
+  command: /usr/share/elasticsearch/bin/plugin install delete-by-query || true
+  args:
+    creates: /usr/share/elasticsearch/plugins/delete-by-query/delete-by-query-{{ elasticsearch.release }}.jar
+  notify: restart elasticsearch
+
+- name: Ensure services started
+  service: name=elasticsearch enabled=yes state=started
+  become: true

@@ -1,0 +1,26 @@
+upstream elasticsearch {
+    server {{ private_addr }}:9200;
+    keepalive 15;
+}
+
+server {
+  listen {{ inventory_hostname }}:9200;
+  client_max_body_size 50m;
+
+  location / {
+    allow 10.10.10.10/32; # some trasted host
+
+    deny all;
+
+    gzip             on;
+    gzip_comp_level  9;
+    gzip_types       application/json;
+    gzip_proxied     any;
+
+    proxy_pass http://elasticsearch;
+    proxy_http_version 1.1;
+    proxy_set_header Connection "Keep-Alive";
+    proxy_set_header Proxy-Connection "Keep-Alive";
+    proxy_redirect   off;
+  }
+}

@@ -1,0 +1,5 @@
+- hosts: search_cluster
+  serial: 1
+  roles:
+    - elasticsearch
+    - elasticsearch-frontend
