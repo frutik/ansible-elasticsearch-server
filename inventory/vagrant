@@ -1,0 +1,14 @@
+[cluster1]
+97.0.0.1 node_name=master-01 private_addr=10.233.77.163
+
+[cluster1:vars]
+datadog_enabled = false
+elasticsearch_minimum_master_nodes=1
+cluster_name = cluster-01
+
+[all:vars]
+ansible_connection = ssh
+ansible_ssh_user = vagrant
+
+[search_cluster:children]
+cluster1
