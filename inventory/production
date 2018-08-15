@@ -1,8 +1,9 @@
-[search_cluster]
-97.0.0.1 cluster_name=cluster-01 node_name=master-01 private_addr=10.233.77.163 datadog_enabled=false elasticsearch_minimum_master_nodes=2
-97.0.0.2 cluster_name=cluster-01 node_name=master-02 private_addr=10.233.77.164 datadog_enabled=false elasticsearch_minimum_master_nodes=2
-97.0.0.3 cluster_name=cluster-01 node_name=master-03 private_addr=10.233.77.164 datadog_enabled=false elasticsearch_minimum_master_nodes=2
+[cluster1]
+97.0.0.1 cluster_name=cluster-01 node_name=master-01 private_addr=10.233.77.163
+97.0.0.2 cluster_name=cluster-01 node_name=master-02 private_addr=10.233.77.164
+97.0.0.3 cluster_name=cluster-01 node_name=master-03 private_addr=10.233.77.164
 
+[cluster2]
 98.0.0.1 cluster_name=cluster-02 node_name=indexer-01 private_addr=10.233.77.185 master_node=false data_node=false datadog_enabled=false
 98.0.0.2 cluster_name=cluster-02 node_name=search-01 private_addr=10.233.77.161
 98.0.0.3 cluster_name=CLUSTER-02 node_name=search-02 private_addr=10.233.77.162
@@ -11,15 +12,19 @@
 98.0.0.6 cluster_name=CLUSTER-02 node_name=search-05 private_addr=10.233.77.179
 98.0.0.7 cluster_name=CLUSTER-02 node_name=search-06 private_addr=10.233.77.179
 
-[search_cluster:vars]
+[cluster1:vars]
+datadog_enabled = false
+elasticsearch_minimum_master_nodes=2
+
+[cluster2:vars]
 datadog_api_key = dfsdfsdfsdfsdfsdfafsd
 datadog_enabled = true
 elasticsearch_minimum_master_nodes=4
-es_port = 9200
-scheme = http
-search_cluster = cluster-03
 
 [all:vars]
 ansible_connection = ssh
 ansible_ssh_user = deploy
 
+[search_cluster:children]
+cluster1
+cluster2

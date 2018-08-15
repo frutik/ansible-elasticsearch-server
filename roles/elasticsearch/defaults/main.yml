@@ -9,3 +9,5 @@ datadog_enabled: false
 elasticsearch_external_access_enabled: true
 elasticsearch_collectd_enabled: false
 elasticsearch_scripts_path: /etc/elasticsearch/scripts
+es_port: 9200
+scheme: http
