@@ -33,5 +33,5 @@ docker-compose up
 
 *Other possible combinations*
 
-- Docker + terraform
-- Packer + shell + terraform
+- Docker + terraform + any supported cloud
+- Packer + shell + terraform + any supported cloud
