@@ -1,0 +1,21 @@
+version: '2'
+services:
+  elasticsearch:
+    image: frutik/elasticsearch-does-not-exists
+    environment:
+      SEARCH_CLUSTER: "elasticsearch"
+    ports:
+      - "9200:9200"
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  app:
+    image: frutik/sample-app-that-does-not-exists
+    environment:
+      RAILS_ENV: "development"
+    ports:
+      - "3000:3000"
+    links:
+      - elasticsearch
+      - redis
