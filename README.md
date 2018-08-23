@@ -4,12 +4,13 @@ Here you can find various (artificial - some of them nost probably will not work
 
 Ansible stuff (with Vargrant stuff to support development process). Provisioning of two elasticsearch clusters with slightly different configuration, both are behind nginx lb, one of the clusters sends monitoring stats into datadog.
 
-*Packer + GCP*
+*Packer + Terraform + GCP*
 
 Packer stuff to build image for Google Cloud Platform (provision with ansible - work still in progress, have to check provisioner, or replace it with the shell one)
 
 ```
 packer build gcp-elasticsearch-image.json
+terraform apply
 ```
 
 *Docker + composer + docker hub/GCP registry*
