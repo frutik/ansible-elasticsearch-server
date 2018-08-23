@@ -3,11 +3,11 @@ elasticsearch_minimum_master_nodes: 3
 elasticsearch:
   version: 2.x
   release: 2.3.3
-  memory: 2g
   config: {}
 datadog_enabled: false
 elasticsearch_external_access_enabled: true
 elasticsearch_collectd_enabled: false
 elasticsearch_scripts_path: /etc/elasticsearch/scripts
+elasticsearch_memory: 512m
 es_port: 9200
 scheme: http

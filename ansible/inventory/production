@@ -14,13 +14,13 @@
 
 [cluster1:vars]
 datadog_enabled = false
-elasticsearch_minimum_master_nodes=2
+elasticsearch_minimum_master_nodes = 2
 cluster_name = cluster-01
 
 [cluster2:vars]
 datadog_api_key = dfsdfsdfsdfsdfsdfafsd
 datadog_enabled = true
-elasticsearch_minimum_master_nodes=4
+elasticsearch_minimum_master_nodes = 4
 cluster_name = CLUSTER-02
 
 [all:vars]

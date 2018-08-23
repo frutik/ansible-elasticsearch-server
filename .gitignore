@@ -34,5 +34,5 @@ config/resque_scheduler.conf
 pids/unicorn.pid
 .idea
 deploy_workers_production.sh
-
+account.json
 *.retry

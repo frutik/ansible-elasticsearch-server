@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true
 
   cpus = 1
-  memory = ENV["MEMORY"] ? ENV["MEMORY"] : "2048"
+  memory = "4000"
 
   config.vm.provider :virtualbox do |vb|
     vb.gui = true if ENV["DEBUG"]

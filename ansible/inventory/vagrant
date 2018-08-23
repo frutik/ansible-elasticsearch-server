@@ -1,9 +1,9 @@
 [cluster1]
-97.0.0.1 node_name=master-01 private_addr=10.233.77.163
+10.0.30.2 node_name=master-01 private_addr=127.0.0.1
 
 [cluster1:vars]
 datadog_enabled = false
-elasticsearch_minimum_master_nodes=1
+elasticsearch_minimum_master_nodes = 1
 cluster_name = cluster-01
 
 [all:vars]
