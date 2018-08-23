@@ -1,0 +1,6 @@
+FROM datadog/docker-dd-agent
+
+ENV API_KEY -my-dd-api-key-goes-here-
+
+ADD docker/elasticsearch/datadog/elasticsearch.yaml  /etc/dd-agent/conf.d/elasticsearch.yaml
+
