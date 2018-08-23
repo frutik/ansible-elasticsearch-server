@@ -1,0 +1,25 @@
+{
+  "variables": {
+    "region": "var",
+    "ssh_username": "var"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "account_file": "account.json",
+      "project_id": "automatic-gamma-204817",
+      "source_image": "ubuntu-1604-xenial-v20180814",
+      "image_name": "es-node-{{ timestamp }}",
+      "disk_size": 10,
+      "ssh_username": "root",
+      "zone": "us-west1-a",
+      "image_family": "universal-node"
+    }
+  ],
+  "provisioners": [
+      {
+        "type": "ansible",
+        "playbook_file": "ansible/infrastructure-all.yml"
+      }
+  ] 
+}
