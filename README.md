@@ -1,4 +1,4 @@
-Here you can find various (artificial, some of them nost probably will not execute) methods to install/configure Elasticsearch service
+Here you can find various (artificial, some of them nost probably are not executable) methods to install/configure Elasticsearch service
 
 *Old good ansible*
 
